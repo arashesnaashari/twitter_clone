@@ -36,8 +36,12 @@ export const getServerSideProps = withSession(async function ({ req, res }) {
       .select({
         bio: 1,
         email: 1,
+        posts: 1,
       })
-
+      .populate({
+        path: "posts",
+        select: ["color", "bookmark", "like"],
+      })
       .lean();
     users = post;
     if (users == null) {

@@ -9,6 +9,42 @@ const App = ({ userInfo1, user }) => {
     useer.followers.includes(userInfo1.userId)
   );
 
+  const [modalFollowers, setModalFollowers] = useState(false);
+  const [followers, setFollowers] = useState();
+  const [modalFollowings, setModalFollowings] = useState(false);
+  const [following, setFollowings] = useState();
+  const handleFollowers = () => {
+    setModalFollowers((p) => !p);
+    if (!modalFollowers) {
+      const body = {
+        ids: useer.followers,
+      };
+      fetch("http://localhost:3000/api/getfollowers", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      })
+        .then((res) => res.json())
+        .then((data) => setFollowers(data))
+        .catch((err) => console.log(err));
+    }
+  };
+  const handleFollowings = () => {
+    setModalFollowings((p) => !p);
+    if (!modalFollowings) {
+      const body = {
+        ids: useer.followings,
+      };
+      fetch("http://localhost:3000/api/getfollowers", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      })
+        .then((res) => res.json())
+        .then((data) => setFollowings(data))
+        .catch((err) => console.log(err));
+    }
+  };
   const handleFollow = async () => {
     const body = {
       user: useer._id,
@@ -57,7 +93,92 @@ const App = ({ userInfo1, user }) => {
   };
   return (
     <>
-      {" "}
+      {modalFollowers && (
+        <div
+          className=" z-20 fixed flex flex-col w-full h-1/4 text-white rounded-md justify-center items-center"
+          onClick={handleFollowings}
+        >
+          <div className="w-1/4 bg-zinc-800 relative rounded-md h-60">
+            <div
+              className="p-2 bg-red-600 rounded-md  m-2 cursor-pointer"
+              // onClick={handleFollowers}
+            >
+              Cloze
+            </div>
+            <div className=" p-2 h-60 scroll">
+              {followers &&
+                followers.map((f) => {
+                  return (
+                    <div className="bg-zinc-500 flex flex-row justify-between p-2 mb-2">
+                      <div className="flex flex-row items-center">
+                        <div
+                          className="w-12 h-12 rounded-3xl bg-slate-50 mr-3"
+                          style={{
+                            backgroundImage: `url(${f.profile})`,
+                            color: "transparent",
+                            backgroundRepeat: "no-repeat",
+                            backgroundSize: "cover",
+                          }}
+                        >
+                          .
+                        </div>
+                        <Link href={`/user/@${f.username}`} className="text-md">
+                          {`@` + f.username}
+                        </Link>
+                      </div>
+                      <div className="flex flex-row items-center">
+                        <h1>{f.email}</h1>
+                      </div>
+                    </div>
+                  );
+                })}{" "}
+            </div>
+          </div>
+        </div>
+      )}
+      {modalFollowings && (
+        <div
+          className=" z-20 fixed flex flex-col w-full h-1/4 text-white rounded-md justify-center items-center"
+          onClick={handleFollowings}
+        >
+          <div className="w-1/4 bg-zinc-800 relative rounded-md h-60">
+            <div
+              className="p-2 bg-red-600 rounded-md  m-2 cursor-pointer"
+              // onClick={handleFollowings}
+            >
+              Cloze
+            </div>
+            <div className=" p-2 h-60 scroll">
+              {following &&
+                following.map((f) => {
+                  return (
+                    <div className="bg-zinc-500 flex flex-row justify-between p-2 mb-2">
+                      <div className="flex flex-row items-center">
+                        <div
+                          className="w-12 h-12 rounded-3xl bg-slate-50 mr-3"
+                          style={{
+                            backgroundImage: `url(${f.profile})`,
+                            color: "transparent",
+                            backgroundRepeat: "no-repeat",
+                            backgroundSize: "cover",
+                          }}
+                        >
+                          .
+                        </div>
+                        <Link href={`/user/@${f.username}`} className="text-md">
+                          {`@` + f.username}
+                        </Link>
+                      </div>
+                      <div className="flex flex-row items-center">
+                        <h1>{f.email}</h1>
+                      </div>
+                    </div>
+                  );
+                })}{" "}
+            </div>
+          </div>
+        </div>
+      )}
       <div className="col-span-2 border-x-2 border-zinc-600 scrollll ">
         <div className="flex flex-col items-center ">
           <div
@@ -95,17 +216,28 @@ const App = ({ userInfo1, user }) => {
             </div>
             <div className="col-span-3 justify-end ">
               <div className="grid grid-cols-3 justify-items-end">
-                <div className=" text-md flex flex-col items-center">
+                <div
+                  className=" cursor-pointer hover:text-gray-600 text-md flex flex-col items-center"
+                  onClick={handleFollowers}
+                >
                   <span>Followers</span>
                   {useer.followers.length}
                 </div>
-                <div className=" text-md flex flex-col items-center">
+                <div
+                  className="cursor-pointer hover:text-gray-600 text-md flex flex-col items-center"
+                  onClick={handleFollowings}
+                >
                   <span>Followings</span>
                   {useer.followings.length}
                 </div>
-                {follow ? (
+
+                {follow || userInfo1.userId == useer._id ? (
                   <div
-                    onClick={handleUnFollow}
+                    onClick={
+                      userInfo1.userId == useer._id
+                        ? console.log(2)
+                        : handleUnFollow
+                    }
                     className="p-1 rounded-md cursor-pointer bg-blue-600 text-black text-md flex flex-col items-center"
                   >
                     <span>
@@ -124,7 +256,7 @@ const App = ({ userInfo1, user }) => {
                         />
                       </svg>
                     </span>
-                    UnFollow
+                    {userInfo1.userId == useer._id ? "its you" : "UnFlollow"}
                   </div>
                 ) : (
                   <div
