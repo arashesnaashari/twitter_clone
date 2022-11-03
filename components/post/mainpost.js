@@ -13,10 +13,13 @@ const App = ({ post, user, id }) => {
 
   const handleLike = async (e) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/post/like/${id}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-      });
+      const res = await fetch(
+        `https://gradiant.vercel.app/api/post/like/${id}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+        }
+      );
       const data = await res.json();
       if (data.sign == true) {
         alert("Success");
@@ -35,7 +38,7 @@ const App = ({ post, user, id }) => {
       post: id,
     };
     try {
-      const res = await fetch("http://localhost:3000/api/post/bookmark", {
+      const res = await fetch("https://gradiant.vercel.app/api/post/bookmark", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -69,11 +72,14 @@ const App = ({ post, user, id }) => {
           post: id,
         };
         try {
-          const res = await fetch("http://localhost:3000/api/post/download", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(body),
-          });
+          const res = await fetch(
+            "https://gradiant.vercel.app/api/post/download",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(body),
+            }
+          );
           const data = await res.json();
           if (data.sign == true) {
             alert("Success");

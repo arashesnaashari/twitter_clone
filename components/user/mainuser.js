@@ -19,7 +19,7 @@ const App = ({ userInfo1, user }) => {
       const body = {
         ids: useer.followers,
       };
-      fetch("http://localhost:3000/api/getfollowers", {
+      fetch("https://gradiant.vercel.app/api/getfollowers", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -35,7 +35,7 @@ const App = ({ userInfo1, user }) => {
       const body = {
         ids: useer.followings,
       };
-      fetch("http://localhost:3000/api/getfollowers", {
+      fetch("https://gradiant.vercel.app/api/getfollowers", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -51,7 +51,7 @@ const App = ({ userInfo1, user }) => {
       follower: userInfo1.userId,
     };
     try {
-      const res = await fetch("http://localhost:3000/api/user/follow", {
+      const res = await fetch("https://gradiant.vercel.app/api/user/follow", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -74,7 +74,7 @@ const App = ({ userInfo1, user }) => {
       follower: userInfo1.userId,
     };
     try {
-      const res = await fetch("http://localhost:3000/api/user/unfollow", {
+      const res = await fetch("https://gradiant.vercel.app/api/user/unfollow", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),

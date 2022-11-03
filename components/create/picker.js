@@ -37,9 +37,8 @@ const App = ({ user }) => {
     if (!info || !color || !user.userId) {
       setErr("Complete The Info !");
     } else {
-      
       try {
-        const res = await fetch("http://localhost:3000/api/post/create", {
+        const res = await fetch("https://gradiant.vercel.app/api/post/create", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body),

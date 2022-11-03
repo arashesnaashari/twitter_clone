@@ -5,7 +5,7 @@ const App = () => {
   const [posts, setPosts] = useState(null);
   useEffect(() => {
     async function fetchData() {
-      const data = await fetch("http://localhost:3000/api/post/latest", {
+      const data = await fetch("https://gradiant.vercel.app/api/post/latest", {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });

@@ -6,7 +6,7 @@ const App = ({ id, postId, user }) => {
   useEffect(() => {
     async function fetchData() {
       const data = await fetch(
-        `http://localhost:3000/api/post/comments/${id}`,
+        `https://gradiant.vercel.app/api/post/comments/${id}`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },
@@ -32,7 +32,7 @@ const App = ({ id, postId, user }) => {
     } else {
       try {
         const res = await fetch(
-          "http://localhost:3000/api/post/comments/create",
+          "https://gradiant.vercel.app/api/post/comments/create",
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },

@@ -18,11 +18,14 @@ const Aa = ({ user, userInfo1 }) => {
     };
 
     try {
-      const res = await fetch("http://localhost:3000/api/user/deletepost", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
+      const res = await fetch(
+        "https://gradiant.vercel.app/api/user/deletepost",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        }
+      );
       const data = await res.json();
       if (data.sign == true) {
         alert("Success");
@@ -49,11 +52,14 @@ const Aa = ({ user, userInfo1 }) => {
     } else {
       console.log(body);
       try {
-        const res = await fetch("http://localhost:3000/api/user/setting", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
-        });
+        const res = await fetch(
+          "https://gradiant.vercel.app/api/user/setting",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body),
+          }
+        );
         const data = await res.json();
         if (data.sign == true) {
           alert("Success");
@@ -63,7 +69,7 @@ const Aa = ({ user, userInfo1 }) => {
           setErr("Try Diffrent Username !");
         } else if (data.sign == "logout") {
           alert("Success");
-          fetch("http://localhost:3000/api/auth/logout").then(() => {
+          fetch("https://gradiant.vercel.app/api/auth/logout").then(() => {
             router.push("/");
           });
         } else {

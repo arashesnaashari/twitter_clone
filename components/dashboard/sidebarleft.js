@@ -204,7 +204,7 @@ const App = () => {
           <button
             className="bg-red-800 mb-10 flex flex-row items-center p-3 rounded-md hover:bg-red-900"
             onClick={() => {
-              fetch("http://localhost:3000/api/auth/logout").then(() => {
+              fetch("https://gradiant.vercel.app/api/auth/logout").then(() => {
                 router.push("/");
               });
             }}
