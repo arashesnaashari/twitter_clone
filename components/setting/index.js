@@ -115,7 +115,7 @@ const Aa = ({ user, userInfo1 }) => {
             {(poosts.length > 0 || poosts == null || poosts == undefined) &&
               poosts.map((p) => {
                 return (
-                  <div className="w-full hover:bg-zinc-700 py-4">
+                  <div className="w-full hover:bg-zinc-700 py-4" key={p._id}>
                     <a href={`/post/${p._id}`}>
                       <div
                         className=" mx-auto rounded-md border-zinc-600 border-2 border-solid h-72 w-2/3 relative"

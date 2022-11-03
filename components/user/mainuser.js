@@ -96,12 +96,12 @@ const App = ({ userInfo1, user }) => {
       {modalFollowers && (
         <div
           className=" z-20 fixed flex flex-col w-full h-1/4 text-white rounded-md justify-center items-center"
-          onClick={handleFollowings}
+          // onClick={handleFollowings}
         >
           <div className="w-1/4 bg-zinc-800 relative rounded-md h-60">
             <div
               className="p-2 bg-red-600 rounded-md  m-2 cursor-pointer"
-              // onClick={handleFollowers}
+              onClick={handleFollowers}
             >
               Cloze
             </div>
@@ -109,7 +109,10 @@ const App = ({ userInfo1, user }) => {
               {followers &&
                 followers.map((f) => {
                   return (
-                    <div className="bg-zinc-500 flex flex-row justify-between p-2 mb-2">
+                    <div
+                      className="bg-zinc-500 flex flex-row justify-between p-2 mb-2"
+                      key={f._id}
+                    >
                       <div className="flex flex-row items-center">
                         <div
                           className="w-12 h-12 rounded-3xl bg-slate-50 mr-3"
@@ -139,12 +142,12 @@ const App = ({ userInfo1, user }) => {
       {modalFollowings && (
         <div
           className=" z-20 fixed flex flex-col w-full h-1/4 text-white rounded-md justify-center items-center"
-          onClick={handleFollowings}
+          // onClick={handleFollowings}
         >
           <div className="w-1/4 bg-zinc-800 relative rounded-md h-60">
             <div
               className="p-2 bg-red-600 rounded-md  m-2 cursor-pointer"
-              // onClick={handleFollowings}
+              onClick={handleFollowings}
             >
               Cloze
             </div>
@@ -152,7 +155,10 @@ const App = ({ userInfo1, user }) => {
               {following &&
                 following.map((f) => {
                   return (
-                    <div className="bg-zinc-500 flex flex-row justify-between p-2 mb-2">
+                    <div
+                      className="bg-zinc-500 flex flex-row justify-between p-2 mb-2"
+                      key={f._id}
+                    >
                       <div className="flex flex-row items-center">
                         <div
                           className="w-12 h-12 rounded-3xl bg-slate-50 mr-3"
@@ -190,7 +196,7 @@ const App = ({ userInfo1, user }) => {
           >
             <h1 className="bg-black p-3">
               {" "}
-              {userInfo1.username}
+              {useer.username}
               {"'"}s Profile :){" "}
             </h1>
           </div>
