@@ -15,7 +15,7 @@ const Com = ({ user }) => {
 
   return (
     <>
-      <a href="https://www.youtube.com/">GOOO</a>
+      {/* <a href="https://www.youtube.com/">GOOO</a> */}
       <LeftSidebar />
       <Main />
     </>
